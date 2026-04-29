@@ -1,5 +1,6 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from flask import Flask, request, jsonify
+from flask import render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
 import os
@@ -20,7 +21,7 @@ def get_bot_response(user_input):
         return response.content.strip()
 @app.route("/", methods=['GET'])
 def home():
-    return "Welcome to the Chatbot API! Send a POST request to /chat with your message."
+    return render_template("index.html")
 @app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
